@@ -1,0 +1,74 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% if messages %}
+        {% for i in messages %}
+          <script>
+            Swal.fire({
+              title: "Eliminado",
+              text: "{{i}}",
+              icon: "error"
+            })
+          </script>
+        {% endfor %}
+      {% endif %}
+
+{% block container %}
+
+<main class="flex-grow-1 d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="d-flex flex-column">
+                    <br>
+                    <div class="d-flex flex-column">
+                        <button class="btn btn-primary" >Listado de Reservas</button>
+                        <br>
+                        {% if is_estudiante %}
+                        <a href="{% url 'genesis_home' %}" class="btn btn-info d-flex justify-content-center align-items-center">Volver</a>
+                        {% else %}
+                        <a href="{% url 'galileo_home' %}" class="btn btn-info d-flex justify-content-center align-items-center">Volver</a>
+                        {% endif %}
+
+                    </div>
+                    <br>
+                                    
+                <div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Lugar</th>
+                                <th>Fecha</th>
+                                <th>Hora de Inicio</th>
+                                <th>Hora de Fin</th>
+                                <th>Estado</th>
+                                <th>Check Reserva</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reserva in reservas %}
+                                <tr>
+                                    <td>{{ reserva.id }}</td>
+                                    <td>{{ reserva.sitio }}</td>
+                                    <td>{{ reserva.fecha_reserva }}</td>
+                                    <td>{{ reserva.hora_inicio }}</td>
+                                    <td>{{ reserva.hora_fin }}</td>
+                                    <td>{{ reserva.estado_reserva }}</td>
+                                    <td>{{ reserva.reservado }}</td>
+                                    <td>
+                                        <a href="{% url 'editar_reserva' reserva.id %}" class="btn btn-info btn-sm" >Editar</a>
+
+                                        <a href="{% url 'eliminar_reserva' reserva.id %}" class="btn btn-danger btn-sm" >Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

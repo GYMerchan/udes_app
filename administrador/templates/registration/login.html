@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>UDES</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <header class="bg-dark text-white py-4">
+      <div class="container text-center">
+        <h1>Sistema de Gestión de Espacios Fisicos</h1>
+      </div>  
+      
+      
+    </header>
+    <div class="container">
+      <div class="row justify-content-center align-items-center" style="height:100vh">
+        <div class="col-12 col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="text-center mb-4">Ingresa Tus Credenciales</h2>
+              <hr>
+              <form action="" method="post" class="text-center">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+
+                <a href="{% url 'home' %}">Volver al Inicio</a>
+                <button class="btn btn-primary btn-block mt-4" type="submit">Ingresar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="bg-dark text-white py-4 mt-auto"><!-- mt-auto para dejar el footer siempre al final -->
+        
+      <div class="container text-center">
+        <p>Universidad de Santander</p>
+      </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

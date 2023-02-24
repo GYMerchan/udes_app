@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% if messages %} <!--Línea para crear alerts bonitos -->
+        {% for i in messages %}
+          <script>
+            Swal.fire({
+              title: "Eliminado",
+              text: "{{i}}",
+              icon: "error"
+            })
+          </script>
+        {% endfor %}
+      {% endif %}
+
+{% block container %}
+
+<main class="flex-grow-1 d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                
+                    <div class="d-flex flex-column">
+                        <h2 class="text-center mb-4">Sitios para Reservar</h2>
+                        {% if is_estudiante %}
+                        <a href="{% url 'genesis_home' %}" class="btn btn-info d-flex justify-content-center align-items-center">Volver</a>
+                        {% else %}
+                        <a href="{% url 'galileo_home' %}" class="btn btn-info d-flex justify-content-center align-items-center">Volver</a>
+                        {% endif %}
+                    
+                    </div>
+                    <br>
+                                    
+                
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Sitio</th>
+                                <th>Lugar</th>
+                                <th>Usuario Control</th>
+                                <th>Aforo máximo</th>
+                                <th>Horas máximo</th>
+                                <th>Opciones </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for sitio in sitios %}
+                                <tr>
+                                    <td>{{ sitio.id }}</td>
+                                    <td>{{ sitio.lugar_sitio }}</td>
+                                    <td>{{ sitio.tipo_usuario }}</td>
+                                    <td>{{ sitio.aforo_maximo }}</td>
+                                    <td>{{ sitio.max_horas_diarias }}</td>
+                                    <td>
+                                        
+                                        {% if is_usuario_control %}
+                                                <a href="{% url 'editar_sitio' id=sitio.id %}" class="btn btn-info btn-sm">Editar</a>
+                                                <a href="{% url 'eliminar_sitio' id=sitio.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                                            {% elif is_estudiante %}
+                                                <a href="{% url 'crear_reserva' %}" class="btn btn-success btn-sm">Reservar</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

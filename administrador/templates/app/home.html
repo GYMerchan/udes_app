@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block container %}
+
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2 class="text-center mb-4">Ingreso a los portales</h2>
+        <p>La Universidad de Santander-UDES, a dispuesto de este sitio web para hacer uso de los espacios fisicos de la universidad reservandolos, ingresando como estudiantes por genesis, y como administrativo por galileo </p>
+      </div>
+    </div>
+  </div>
+
+<main class="flex-grow-1 d-flex align-items-center"><!-- flex-grow-1 para hacer que el contenedor se expanda automáticamente  -->
+    <!-- Enlace a Galileo -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+              <a href="{% url 'galileo' %}">
+                <div class="card bg-primary text-white p-5 text-center">
+                  <h2>Galileo</h2>
+                </div>
+              </a>
+            </div>            
+        <!-- Enlace a Genesis -->
+            <div class="col-md-6">
+              <a href="{% url 'genesis' %}">
+                <div class="card bg-primary text-white p-5 text-center">
+                  <h2>Genesis</h2>
+                </div>
+              </a>
+            </div>
+      </div>
+    </div>
+  </main>
+  
+
+
+
+{% endblock %}
